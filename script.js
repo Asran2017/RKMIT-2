@@ -2,13 +2,17 @@ const historyLink = document.getElementById("history_link");
 const homeLink = document.getElementById("home_link");
 const scrollText = document.getElementById("scroll-text");
 const itenaryLink = document.getElementById("itenary_link");
+const samajamLink = document.getElementById("samajam_link");
 const donationLink = document.getElementById("donation_link");
+const contactLink = document.getElementById("contact_link");
 
 const introContent = document.querySelector(".section--2");
 const mantraContent = document.querySelector(".section--3");
 const historyContent = document.querySelector(".section--4");
 const itenaryContent = document.querySelector(".section--5");
 const donationContent = document.querySelector(".section--6");
+const samajamContent = document.querySelector(".section--7");
+const contactContent = document.querySelector(".section--8");
 window.onload = function () {
   introContent.style.display = "block";
   mantraContent.style.display = "block";
@@ -17,6 +21,8 @@ window.onload = function () {
   historyContent.style.display = "none";
   itenaryContent.style.display = "none";
   donationContent.style.display = "none";
+  samajamContent.style.display = "none";
+  contactContent.style.display = "none";
 };
 historyLink.addEventListener("click", function (e) {
   e.preventDefault();
@@ -28,12 +34,16 @@ historyLink.addEventListener("click", function (e) {
   introContent.style.display = "none";
   mantraContent.style.display = "none";
   donationContent.style.display = "none";
+  samajamContent.style.display = "none";
+  contactContent.style.display = "none";
 });
 homeLink.addEventListener("click", function (e) {
   e.preventDefault();
   historyContent.style.display = "none";
   itenaryContent.style.display = "none";
   donationContent.style.display = "none";
+  samajamContent.style.display = "none";
+  contactContent.style.display = "none";
   scrollText.textContent =
     "ஹரே ராம ஹரே ராம ராம ஹரே ஹரே... ஹரே கிருஷ்ண ஹரே கிருஷ்ண கிருஷ்ண ஹரே ஹரே!!";
   introContent.style.display = "block";
@@ -52,6 +62,21 @@ itenaryLink.addEventListener("click", function (e) {
   mantraContent.style.display = "none";
   historyContent.style.display = "none";
   donationContent.style.display = "none";
+  samajamContent.style.display = "none";
+  contactContent.style.display = "none";
+});
+samajamLink.addEventListener("click", function (e) {
+  e.preventDefault();
+  samajamContent.style.display = "block";
+  samajamContent.classList.add("section-animate");
+  scrollText.textContent =
+    "ஸ்ரீ க்ருஷ்ண கோவிந்த ஹரே முராரே....ஹே நாத நாராயண வாசுதேவ..!!";
+  introContent.style.display = "none";
+  mantraContent.style.display = "none";
+  donationContent.style.display = "none";
+  historyContent.style.display = "none";
+  itenaryContent.style.display = "none";
+  contactContent.style.display = "none";
 });
 
 donationLink.addEventListener("click", function (e) {
@@ -64,4 +89,17 @@ donationLink.addEventListener("click", function (e) {
   mantraContent.style.display = "none";
   historyContent.style.display = "none";
   itenaryContent.style.display = "none";
+  samajamContent.style.display = "none";
+  contactContent.style.display = "none";
+});
+contactLink.addEventListener("click", function (e) {
+  e.preventDefault();
+  contactContent.style.display = "block";
+  contactContent.classList.add("section-animate");
+  introContent.style.display = "none";
+  mantraContent.style.display = "none";
+  historyContent.style.display = "none";
+  itenaryContent.style.display = "none";
+  samajamContent.style.display = "none";
+  donationContent.style.display = "none";
 });
