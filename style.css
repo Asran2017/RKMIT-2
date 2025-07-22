@@ -1,0 +1,498 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "Noto Serif Tamil", serif;
+  background-image: url(Images/bg_wheat.png);
+  overflow-x: hidden;
+}
+
+.chant_highlight {
+  animation: goldenGlow 2s infinite;
+  color: #7c5918;
+  margin-top: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px #7c5918, 0 0 10px #7c5918;
+}
+
+@keyframes goldenGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px #7c5918, 0 0 10px #7c5918;
+  }
+  50% {
+    text-shadow: 0 0 15px #a67c33, 0 0 20px #a67c33;
+  }
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.head h1 {
+  margin-top: 0px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #7c5918;
+}
+
+.header_img {
+  width: 90%;
+  height: 70%;
+  align-self: center;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#scroll-container {
+  box-shadow: 0 0 8px #7c5918;
+  border-top: 1px solid #7c5918;
+  border-bottom: 1px solid #7c5918;
+  display: flex;
+  writing-mode: horizontal-tb;
+  color: #7c5918;
+  font-size: 1rem;
+  font-weight: bolder;
+  align-items: center;
+  margin-top: 5px;
+  display: flex;
+  line-height: 30px;
+  white-space: nowrap;
+  width: 100%;
+  height: 30px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  overflow: hidden;
+}
+
+#scroll-text {
+  animation-name: my-animation;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  text-align: center;
+}
+
+@keyframes my-animation {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-100vw);
+  }
+}
+.content_bar {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin-top: 30px;
+  /* margin: 0; */
+}
+
+.content_bar a {
+  display: block;
+  text-decoration: none;
+  color: #7f5d1f;
+  font-weight: bold;
+  padding-bottom: 10px;
+  text-shadow: 0 0 4px #f5e1c0, 0 0 8px #7c5918;
+}
+
+/* .content_bar a:hover {
+  background-color: #d3a959;
+  border-radius: 10px;
+  width: max-content;
+  max-height: fit-content;
+} */
+.list_item {
+  list-style: none;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100vw;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #34260c;
+}
+/* Section Styling */
+.section--2,
+.section--3,
+.section--4,
+.section--5,
+.section--6 {
+  padding: 20px 15px;
+  color: #7c5918;
+  font-weight: 500;
+  margin: 0 auto;
+  /* max-width: 800px; */
+  border-bottom: 1px solid #ccc;
+}
+
+/* Headings */
+.section--2 h1,
+.section--3 h1,
+.section--5 h1,
+.section--6 h1 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  color: #6b4f1d;
+  border-left: 5px solid #d4af37;
+  padding-left: 10px;
+}
+
+/* Article Text */
+.address,
+.history,
+.mantra {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.section_visible {
+  display: block;
+}
+/* Bold Labels */
+.address b {
+  color: #4b2e0f;
+}
+
+/* Mantra Styling */
+.mantra p {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #b4450a;
+  background-color: #fff8e1;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: justify;
+  text-shadow: 1px 1px 0 #b7663b;
+}
+.inmapinimg_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.inmap {
+  width: 70vw;
+  height: 50vh;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-top: 15px;
+}
+
+.inimg1 {
+  width: 80vw;
+  height: 90vh;
+  border-radius: 10px;
+  margin-left: 8%;
+  margin-top: 25px;
+  transition: transform 0.5s ease;
+}
+
+.inimg1:hover {
+  transform: scale(1.03);
+}
+
+/* STYLE FOR ITENARY PAGE  Aligns automatically for mobile*/
+.section--5 {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.itenary_text {
+  flex: 1 1 55%;
+  max-width: 600px;
+  min-width: 300px;
+}
+.itenary_text ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.itenary_item {
+  font-size: 1.1rem;
+  color: #4a5404;
+  font-weight: 600;
+}
+.iterimg {
+  flex: 1 1 40%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(124, 89, 24, 0.15);
+}
+/* Style for Donation Page */
+.section--6 {
+  display: block;
+  text-align: left;
+}
+/* .flex_row {
+  display: flex;
+  flex-direction: row;
+} */
+.donationimg {
+  width: 90vw;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #b4450a;
+}
+.bank {
+  color: #603d1e;
+  font-weight: 900;
+}
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-animate {
+  animation: fadeSlide 0.8s ease-out forwards;
+  opacity: 0;
+}
+/* Media Queries for Home Page*/
+@media screen and (min-width: 767px) {
+  .chant_highlight {
+    font-size: 1.5rem;
+  }
+  .head h1 {
+    font-size: 1.6rem;
+  }
+  .inmapinimg_container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .inimg1 {
+    width: auto;
+    height: 80vh;
+    margin-right: 20px;
+  }
+  .inmap {
+    width: auto;
+    height: 80vh;
+    margin-top: 25px;
+  }
+  main {
+    display: flex;
+    gap: 10px;
+    margin: 1%;
+  }
+  .content_bar {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: #ebd4a3;
+    border: 1px solid #ebd4a3;
+    border-left: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px #7c59181a;
+    height: 100%;
+    width: fit-content;
+    padding: 15px;
+    margin-left: -6px;
+  }
+  .content_bar a {
+    display: inline;
+    color: #b4450a;
+    font-size: 1.1rem;
+  }
+  .list_item {
+    border-bottom: none;
+    margin-top: 15px;
+    width: 25%;
+  }
+  .border {
+    /* border: 1px solid #ebd4a3;
+    border-radius: 5px; */
+    margin-top: 30px;
+  }
+
+  /* Media Query for Itenary Page */
+  .iterimg {
+    max-width: 350px;
+    height: auto;
+    margin-left: 100px;
+  }
+  /* Media Query for Donation Page */
+  .section--6 {
+    display: block;
+    font-size: 1.1rem;
+  }
+  .donationimg {
+    width: 400px;
+    height: auto;
+    margin-left: 50px;
+  }
+}
+/* Media Queries for Home Page*/
+@media screen and (min-width: 1023px) {
+  .head h1 {
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 0 #574524, -1px -1px 0 #fff8e7;
+  }
+
+  .chant_highlight {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .header_img {
+    width: 55%;
+    height: 35%;
+  }
+  #scroll-container {
+    font-size: 1rem;
+    font-weight: 900;
+  }
+  .inmapinimg_container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .inimg1 {
+    width: 25vw;
+    height: 50vh;
+    margin-left: 80px;
+  }
+  .inmap {
+    width: 25vw;
+    height: 50vh;
+    margin-left: 20px;
+    margin-top: 25px;
+  }
+  .mantra {
+    width: max-content;
+  }
+  .mantra p {
+    margin-left: 150px;
+    font-size: 1.2rem;
+  }
+
+  /* Media Query for Itenary Page */
+  .section--5 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 2rem;
+    flex-direction: row;
+  }
+  .iterimg {
+    flex: 1;
+    max-width: 350px;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 110px;
+    align-self: center;
+  }
+
+  .itenary_text {
+    flex: 1;
+    max-width: 600px;
+    min-width: 300px;
+  }
+  .itenary_text ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  /* Media Query for Donation Page */
+  .donationimg {
+    margin-left: 180px;
+  }
+}
+/* Media Queries for Home Page*/
+@media screen and (min-width: 1440px) {
+  .chant_highlight {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .head h1 {
+    font-size: 2.3rem;
+    text-shadow: 2px 2px 0 #917a4f, -3px -3px 0 #f9f2e3;
+  }
+  .header_img {
+    width: 50%;
+    height: 30%;
+  }
+  #scroll-container {
+    font-size: 1.2rem;
+    font-weight: 900;
+  }
+  .section--2 h1,
+  .section--3 h1 {
+    font-size: 2rem;
+  }
+  .address,
+  .history,
+  .mantra {
+    font-size: 1.5rem;
+    line-height: 1.6;
+  }
+  .inmapinimg_container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .inimg1 {
+    width: max-content;
+    height: 80vh;
+    margin-left: 50px;
+  }
+  .inmap {
+    width: max-content;
+    height: 80vh;
+    margin-top: 25px;
+  }
+  .section--2 {
+    border-bottom: none;
+  }
+  /* Media Query for Donation Page */
+  .section--6 {
+    font-size: 1.3rem;
+  }
+  .section--6 h1 {
+    font-size: 2rem;
+  }
+  .flex_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows wrapping if needed */
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .bank_details {
+    flex: 1 1;
+    max-width: 800px;
+  }
+
+  .donationimg {
+    flex: 1 1 35%;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin-left: -50px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(124, 89, 24, 0.15);
+  }
+  .bank {
+    font-size: 1.5rem;
+  }
+}
