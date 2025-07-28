@@ -1,6 +1,6 @@
-/* .all_sections {
-  display: none;
-} */
+.homePage {
+  display: block;
+}
 
 body {
   margin: 0;
@@ -122,12 +122,21 @@ body {
   border-bottom: 2px solid #34260c;
 }
 /* Section Styling */
-.section--2,
-.section--3,
+
 .section--4,
 .section--5,
 .section--6,
 .section--8 {
+  display: none;
+  padding: 20px 15px;
+  color: #7c5918;
+  font-weight: 500;
+  margin: 0 auto;
+  /* max-width: 800px; */
+  border-bottom: 1px solid #ccc;
+}
+.section--2,
+.section--3 {
   padding: 20px 15px;
   color: #7c5918;
   font-weight: 500;
@@ -156,9 +165,7 @@ body {
   font-size: 1.1rem;
   line-height: 1.6;
 }
-.section_visible {
-  display: block;
-}
+
 /* Bold Labels */
 .address b {
   color: #4b2e0f;
@@ -205,7 +212,6 @@ body {
 
 /* STYLE FOR ITENARY PAGE  Aligns automatically for mobile*/
 .section--5 {
-  display: none;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
@@ -250,7 +256,6 @@ body {
 }
 /* Style for Donation Page */
 .section--6 {
-  display: block;
   text-align: left;
 }
 /* Style for Contact Page */
