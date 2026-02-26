@@ -3,9 +3,11 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full viewport height */
   margin: 0;
   padding: 0;
-  width: 100%;
   font-family: "Noto Serif Tamil", serif;
   background-image: url(Images/bg_wheat.png);
   overflow-x: hidden;
@@ -17,16 +19,22 @@ body {
   margin-top: 5px;
   font-size: 0.8rem;
   font-weight: bold;
-  text-shadow: 0 0 5px #7c5918, 0 0 10px #7c5918;
+  text-shadow:
+    0 0 5px #7c5918,
+    0 0 10px #7c5918;
 }
 
 @keyframes goldenGlow {
   0%,
   100% {
-    text-shadow: 0 0 5px #7c5918, 0 0 10px #7c5918;
+    text-shadow:
+      0 0 5px #7c5918,
+      0 0 10px #7c5918;
   }
   50% {
-    text-shadow: 0 0 15px #a67c33, 0 0 20px #a67c33;
+    text-shadow:
+      0 0 15px #a67c33,
+      0 0 20px #a67c33;
   }
 }
 .head {
@@ -89,7 +97,6 @@ body {
 }
 .content_bar {
   display: flex;
-
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -104,13 +111,16 @@ body {
   color: #7f5d1f;
   font-weight: bold;
   padding-bottom: 10px;
-  text-shadow: 0 0 4px #f5e1c0, 0 0 8px #7c5918;
+  text-shadow:
+    0 0 4px #f5e1c0,
+    0 0 8px #7c5918;
 }
 
 .list_item:hover a {
-  background: linear-gradient(135deg, #fdf6e3, #fceabb);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-  transform: scale(1.02);
+  color: #d4af37;
+  text-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+  transform: none;
+  background: none;
 }
 .list_item {
   list-style: none;
@@ -121,6 +131,70 @@ body {
   margin-bottom: 10px;
   border-bottom: 2px solid #34260c;
 }
+.qr-section {
+  margin-top: 30px;
+  padding-bottom: 35px;
+}
+.qr-code {
+  display: block;
+  width: 85%;
+  max-width: 700px;
+}
+
+.footer {
+  background-color: #5c4033;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: auto;
+  box-shadow: 0 -4px 12px rgba(124, 89, 24, 0.2);
+  position: relative;
+}
+
+.footer p {
+  margin: 0;
+  line-height: 1.6;
+}
+.footer .link {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 8px;
+  display: inline;
+}
+.footer div {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.footer span {
+  display: inline-flex;
+  gap: 10px;
+}
+.icon {
+  color: #ff0000;
+}
+.icon2 {
+  color: #1877f2;
+}
+.footer .icon,
+.footer .icon2 {
+  font-size: 1.5rem;
+  vertical-align: middle;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.footer .icon:hover,
+.footer .icon2:hover {
+  transform: scale(1.2);
+}
+
 /* Section Styling */
 
 .section--4,
@@ -163,6 +237,7 @@ body {
 .history,
 .mantra {
   font-size: 1.1rem;
+
   line-height: 1.6;
 }
 
@@ -179,7 +254,8 @@ body {
   background-color: #fff8e1;
   padding: 15px;
   border-radius: 8px;
-  text-align: justify;
+
+  text-align: left;
   text-shadow: 1px 1px 0 #b7663b;
 }
 .inmapinimg_container {
@@ -210,7 +286,7 @@ body {
   transform: scale(1.03);
 }
 
-/* STYLE FOR ITENARY PAGE  Aligns automatically for mobile*/
+/* STYLE FOR ITENARY PAGE  */
 .section--5 {
   flex-wrap: wrap;
   justify-content: space-between;
@@ -273,10 +349,13 @@ body {
   color: #4a5404;
   font-weight: 900;
 }
-/* .flex_row {
+.flex_row {
   display: flex;
-  flex-direction: row;
-} */
+  flex-direction: column; /* default: stacked for mobile */
+  align-items: center;
+  gap: 20px; /* spacing between QR and image */
+}
+
 .donationimg {
   width: 90vw;
   height: 100%;
@@ -320,7 +399,9 @@ body {
   border: 4px solid #fceabb;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Darker shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .gallery img:hover {
   transform: scale(1.05);
@@ -385,6 +466,9 @@ body {
     border-radius: 5px; */
     margin-top: 30px;
   }
+  .mantra p {
+    text-align: justify;
+  }
 
   /* Media Query for Itenary Page */
   .iterimg {
@@ -424,7 +508,9 @@ body {
 @media screen and (min-width: 1023px) {
   .head h1 {
     font-size: 1.85rem;
-    text-shadow: 1.5px 1.5px 0 #221b0f, -1px -1px 0 #fff8e7;
+    text-shadow:
+      1.5px 1.5px 0 #221b0f,
+      -1px -1px 0 #fff8e7;
   }
 
   .chant_highlight {
@@ -463,6 +549,11 @@ body {
     margin-left: 150px;
     font-size: 1.2rem;
   }
+  .qr-code {
+    width: 70%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 
   /* Media Query for Itenary Page */
   .section--5 {
@@ -494,6 +585,7 @@ body {
   .donationimg {
     margin-left: 180px;
   }
+
   /* Media Query for Contact Page */
   .contact_flex {
     display: flex;
@@ -517,119 +609,121 @@ body {
     object-fit: cover;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
-}
-/* Media Queries for Home Page*/
-@media screen and (min-width: 1440px) {
-  .chant_highlight {
-    font-size: 1rem;
-    font-weight: bold;
-  }
-  .head h1 {
-    font-size: 2.3rem;
-    text-shadow: 2px 2px 0 #917a4f, -3px -3px 0 #f9f2e3;
-  }
-  .header_img {
-    width: 50%;
-    height: 30%;
-  }
-  #scroll-container {
-    font-size: 1.2rem;
-    font-weight: 900;
-  }
-  .section--2 h1,
-  .section--3 h1,
-  .section--8 h1 {
-    font-size: 2rem;
-  }
-  .address,
-  .history,
-  .mantra {
-    font-size: 1.5rem;
-    line-height: 1.6;
-  }
-  .inmapinimg_container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-  }
-  .inimg1 {
-    width: max-content;
-    height: 80vh;
-    margin-left: 50px;
-  }
-  .inmap {
-    width: max-content;
-    height: 80vh;
-    margin-top: 25px;
-  }
-  .section--2 {
-    border-bottom: none;
-  }
-  /* Media Query for Itenary Page */
-  .itenary_item {
-    font-size: 1.2rem;
-    font-weight: 800;
-  }
-  .iterimg {
-    margin-top: -10px;
-    margin-left: 150px;
-  }
+  /* Media Queries for Home Page*/
+  @media screen and (min-width: 1440px) {
+    .chant_highlight {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .head h1 {
+      font-size: 2.3rem;
+      text-shadow:
+        2px 2px 0 #917a4f,
+        -3px -3px 0 #f9f2e3;
+    }
+    .header_img {
+      width: 50%;
+      height: 30%;
+    }
+    #scroll-container {
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+    .section--2 h1,
+    .section--3 h1,
+    .section--8 h1 {
+      font-size: 2rem;
+    }
+    .address,
+    .history,
+    .mantra {
+      font-size: 1.5rem;
+      line-height: 1.6;
+    }
+    .inmapinimg_container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .inimg1 {
+      width: max-content;
+      height: 80vh;
+      margin-left: 50px;
+    }
+    .inmap {
+      width: max-content;
+      height: 80vh;
+      margin-top: 25px;
+    }
+    .section--2 {
+      border-bottom: none;
+    }
+    /* Media Query for Itenary Page */
+    .itenary_item {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+    .iterimg {
+      margin-top: -10px;
+      margin-left: 150px;
+    }
 
-  /* Media Query for Samajam Page */
-  .sm_content {
-    font-size: 1.3rem;
-  }
-  .sm_list {
-    font-size: 1.3rem;
-    font-weight: 800;
-  }
-  /* Media Query for Donation Page */
-  .section--6 {
-    font-size: 1.3rem;
-  }
-  .section--6 h1 {
-    font-size: 2rem;
-  }
-  .flex_row {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Allows wrapping if needed */
-    gap: 2rem;
-    padding: 2rem;
-    width: 100%;
-  }
+    /* Media Query for Samajam Page */
+    .sm_content {
+      font-size: 1.3rem;
+    }
+    .sm_list {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+    /* Media Query for Donation Page */
+    .section--6 {
+      font-size: 1.3rem;
+    }
+    .section--6 h1 {
+      font-size: 2rem;
+    }
+    .flex_row {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      align-items: baseline;
+      flex-wrap: wrap; /* Allows wrapping if needed */
+      gap: 2rem;
+      padding: 2rem;
+      width: 100%;
+    }
 
-  .bank_details {
-    flex: 1 1;
-    max-width: 800px;
-  }
+    .bank_details {
+      flex: 1 1;
+      max-width: 800px;
+    }
 
-  .donationimg {
-    flex: 1 1 35%;
-    max-width: 400px;
-    width: 100%;
-    height: auto;
-    margin-left: -50px;
-    border-radius: 10px;
-    box-shadow: 0 0 8px #7c591826;
-  }
-  .bank {
-    font-size: 1.5rem;
-  }
-  /* Media Query for Contact Page */
-  .section--8 p {
-    font-size: 1.3rem;
-  }
-  .color {
-    font-size: 1.5rem;
-    font-weight: 900;
-  }
-  .contactimg {
-    width: 400px;
-    height: auto;
+    .donationimg {
+      flex: 1 1 35%;
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      margin-left: -50px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px #7c591826;
+    }
+    .bank {
+      font-size: 1.5rem;
+    }
+    /* Media Query for Contact Page */
+    .section--8 p {
+      font-size: 1.3rem;
+    }
+    .color {
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+    .contactimg {
+      width: 400px;
+      height: auto;
+    }
   }
 }
