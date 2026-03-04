@@ -164,32 +164,50 @@ const linksConfig = {
   home_link: {
     show: ["intro", "mantra"],
     display: "block",
-    text: "ஹரே ராம ஹரே ராம ராம ஹரே ஹரே... ஹரே கிருஷ்ண ஹரே கிருஷ்ண கிருஷ்ண ஹரே ஹரே!!",
+    text: {
+      ta: "ஹரே ராம ஹரே ராம ராம ஹரே ஹரே... ஹரே கிருஷ்ண ஹரே கிருஷ்ண கிருஷ்ண ஹரே ஹரே!!",
+      en: "Hare Rama Hare Rama Rama Rama Hare Hare......Hare Krishna Hare Krishna Krishan Krishna Hare Hare!!",
+    },
   },
   history_link: {
     show: ["history"],
     display: "block",
-    text: "ஸர்வத்ர கோவிந்த நாம சங்கீர்த்தனம்....கோவிந்தா கோவிந்தா...!!",
+    text: {
+      ta: "ஸர்வத்ர கோவிந்த நாம சங்கீர்த்தனம்....கோவிந்தா கோவிந்தா...!!",
+      en: "Sarvatra Govinda Nama Sankeerthanam....Govinda Govinda!!",
+    },
   },
   itenary_link: {
     show: ["itenary"],
     display: "flex",
-    text: "ஓம் தாமோதராய வித்மஹே  ருக்மணி வல்லபாய தீமஹி  தந்நோ கிருஷ்ண: ப்ரசோதயாத்...",
+    text: {
+      ta: "ஓம் தாமோதராய வித்மஹே ருக்மணி வல்லபாய தீமஹி தந்நோ கிருஷ்ண: ப்ரசோதயாத்...",
+      en: "Om Dhamodharaya Vidhmahe Rukmini Vallabaya Dheemahi Thanno Krishna Prachodayath!",
+    },
   },
   samajam_link: {
     show: ["samajam"],
     display: "block",
-    text: "ஸ்ரீ க்ருஷ்ண கோவிந்த ஹரே முராரே....ஹே நாத நாராயண வாசுதேவ..!!",
+    text: {
+      ta: "ஸ்ரீ க்ருஷ்ண கோவிந்த ஹரே முராரே....ஹே நாத நாராயண வாசுதேவ..!!",
+      en: "Sri Krishna Govinda Hare Murare.....Hey Nath Narayana Vasudeva!!",
+    },
   },
   donation_link: {
     show: ["donation"],
     display: "block",
-    text: "அச்யுதம் கேஷவம் ராம நாராயணம்...கிருஷ்ண தாமோதரம் வாசுதேவம் ஹரி..!!",
+    text: {
+      ta: "அச்யுதம் கேஷவம் ராம நாராயணம்...கிருஷ்ண தாமோதரம் வாசுதேவம் ஹரி..!!",
+      en: "Achyutham Keshavam Rama Narayanam......Krishna Dhamodharam Vasudevam Bhaje!!",
+    },
   },
   contact_link: {
     show: ["contact"],
     display: "block",
-    text: "",
+    text: {
+      ta: "அபார கருணா மூர்த்திம் ஆஞ்சநேயம் நமாம் யஹம்!!",
+      en: "Abara Krishna Moorthim Anjaneyam Namamyaham!!",
+    },
   },
   gallery_link: {
     show: ["gallery"],
@@ -203,7 +221,8 @@ function hideAllSections() {
   Object.values(sections).forEach((sec) => (sec.style.display = "none"));
 }
 
-// Attach listeners
+const currentLang = document.documentElement.lang; // "ta" or "en"
+
 Object.entries(linksConfig).forEach(([id, config]) => {
   const link = document.getElementById(id);
   link.addEventListener("click", (e) => {
@@ -213,7 +232,9 @@ Object.entries(linksConfig).forEach(([id, config]) => {
       sections[name].style.display = config.display;
       sections[name].classList.add("section-animate");
     });
-    if (config.text) scrollText.textContent = config.text;
+    if (config.text) {
+      scrollText.textContent = config.text[currentLang];
+    }
   });
 });
 

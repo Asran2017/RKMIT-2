@@ -1,14 +1,22 @@
 .homePage {
   display: block;
 }
+[lang="ta"] {
+  font-family: "Noto Serif Tamil", serif;
+}
 
+[lang="en"],
+html[lang="en"] body {
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  color: rebeccapurple;
+}
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* full viewport height */
   margin: 0;
   padding: 0;
-  font-family: "Noto Serif Tamil", serif;
   background-image: url(Images/bg_wheat.png);
   overflow-x: hidden;
 }
@@ -40,8 +48,37 @@ body {
 .head {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
 }
+
+.top-row {
+  display: flex;
+  justify-content: space-between; /* chant left, button right */
+  align-items: center;
+  width: 100%; /* span full width */
+  padding: 10px 20px;
+}
+
+.top-row a {
+  color: #7f5d1f;
+}
+
+.top-row a button {
+  box-shadow: 0 0 8px #7c5918;
+  border-top: 1px solid #7c5918;
+  border-bottom: 1px solid #7c5918;
+  background-image: url(Images/bg_wheat.png);
+  color: #633014;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Noto Serif", serif;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.top-row a button:hover {
+  color: #361503;
+}
+
 .head h1 {
   margin-top: 0px;
   font-weight: 700;
@@ -352,6 +389,7 @@ body {
 .flex_row {
   display: flex;
   flex-direction: column; /* default: stacked for mobile */
+  justify-content: left;
   align-items: center;
   gap: 20px; /* spacing between QR and image */
 }
@@ -447,9 +485,11 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 6px #7c59181a;
     height: 100%;
-    width: fit-content;
+    width: 100%;
+    max-width: 1500px;
+    white-space: nowrap;
     padding: 15px;
-    margin-left: -6px;
+    margin: 0 auto;
   }
   .content_bar a {
     display: inline;
@@ -483,7 +523,7 @@ body {
     font-size: 1.1rem;
   }
   .donationimg {
-    width: 400px;
+    max-width: 300px;
     height: auto;
     margin-left: 50px;
   }
@@ -582,8 +622,26 @@ body {
     margin-bottom: 20px;
   }
   /* Media Query for Donation Page */
+  .flex_row {
+    flex-direction: row; /* side by side on desktop */
+    justify-content: left;
+    align-items: flex-start; /* align tops neatly */
+    gap: 40px;
+  }
+
+  .bank_details {
+    flex: 1;
+    max-width: 45%; /* keeps text block compact */
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
   .donationimg {
-    margin-left: 180px;
+    flex: 1;
+    max-width: 250px; /* balances with bank details */
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
   }
 
   /* Media Query for Contact Page */
@@ -687,7 +745,7 @@ body {
     }
     .flex_row {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: left;
       align-items: baseline;
       flex-wrap: wrap; /* Allows wrapping if needed */
@@ -697,7 +755,7 @@ body {
     }
 
     .bank_details {
-      flex: 1 1;
+      flex: 1 3;
       max-width: 800px;
     }
 
