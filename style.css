@@ -24,6 +24,7 @@ body {
 .chant_highlight {
   animation: goldenGlow 2s infinite;
   color: #7c5918;
+  display: inline-block;
   margin-top: 5px;
   font-size: 0.8rem;
   font-weight: bold;
@@ -52,8 +53,9 @@ body {
 }
 
 .top-row {
-  display: flex;
-  justify-content: space-between; /* chant left, button right */
+  position: relative;
+  text-align: center;
+  padding: 10px 20px;
   align-items: center;
   width: 100%; /* span full width */
   padding: 10px 20px;
@@ -61,12 +63,17 @@ body {
 
 .top-row a {
   color: #7f5d1f;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .top-row a button {
   box-shadow: 0 0 8px #7c5918;
   border-top: 1px solid #7c5918;
   border-bottom: 1px solid #7c5918;
+  border-radius: 5px;
   background-image: url(Images/bg_wheat.png);
   color: #633014;
   font-size: 1rem;
@@ -312,7 +319,8 @@ body {
 
 .inimg1 {
   width: 80vw;
-  height: 90vh;
+  height: 80vh;
+
   border-radius: 10px;
   margin-left: 8%;
   margin-top: 25px;
