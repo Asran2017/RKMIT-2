@@ -37,7 +37,7 @@ export async function handler() {
       day: panchang.vaara,
       tithi: panchang.tithi[0].name,
       nakshatra: panchang.nakshatra[0].name,
-      date: new Date(panchang.sunrise).toLocaleDateString("en-IN"),
+      date: new Date(panchang.sunrise).toLocleDateString("en-IN"),
     };
 
     // STEP 3: Send data to frontend

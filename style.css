@@ -145,6 +145,30 @@ body {
     transform: translateX(-100%);
   }
 }
+.panchangam {
+  margin: 25px auto;
+  padding: 15px;
+  max-width: 500px;
+  background-color: #fff8e1;
+  border: 2px solid #d4af37;
+  background: linear-gradient(to bottom, #fff8e1, #fceabb);
+  border-radius: 10px;
+  box-shadow: 0 0 8px #7c591826;
+  text-align: center;
+}
+
+.panchangam h1 {
+  border-bottom: 2px solid #d4af37;
+  display: inline-block;
+  color: #7c5918;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.panchangam p {
+  font-size: 1.1rem;
+  color: #633014;
+}
 /* Navbar Styling */
 .content_bar {
   display: flex;

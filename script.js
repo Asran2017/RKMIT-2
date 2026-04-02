@@ -246,3 +246,19 @@ window.onload = () => {
     sections[name].classList.add("section-animate");
   });
 };
+
+async function loadPanchangam() {
+  try {
+    const res = await fetch("/.netlify/functions/panchangam");
+    const data = await res.json();
+
+    document.getElementById("p-date").textContent = data.date;
+    document.getElementById("p-day").textContent = data.day;
+    document.getElementById("p-tithi").textContent = data.tithi;
+    document.getElementById("p-nakshatra").textContent = data.nakshatra;
+  } catch (err) {
+    console.error("Error loading Panchangam:", err);
+  }
+}
+
+loadPanchangam();
