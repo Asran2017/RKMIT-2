@@ -2,7 +2,7 @@ const now = new Date().toISOString();
 
 export async function handler() {
   try {
-    // STEP 1: Get access token
+    //  Get access token
     const tokenResponse = await fetch("https://api.prokerala.com/token", {
       method: "POST",
       headers: {
@@ -18,7 +18,7 @@ export async function handler() {
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
 
-    // STEP 2: Call Panchangam API
+    //  Call Panchangam API
     const apiResponse = await fetch(
       `https://api.prokerala.com/v2/astrology/panchang?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}`,
       {
@@ -30,6 +30,7 @@ export async function handler() {
     );
 
     const data = await apiResponse.json();
+    console.log(data);
 
     // STEP 3: Send data to frontend
     return {
