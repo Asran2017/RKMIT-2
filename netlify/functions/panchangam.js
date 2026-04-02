@@ -32,6 +32,8 @@ export async function handler() {
     const data = await apiResponse.json();
     console.log(data);
     const panchang = data.data;
+    console.log(JSON.stringify(panchang.tithi, null, 2));
+    console.log(JSON.stringify(panchang.nakshatra, null, 2));
 
     const result = {
       day: panchang.vaara,
@@ -41,7 +43,11 @@ export async function handler() {
         panchang.nakshatra?.[0]?.name?.en ||
         panchang.nakshatra?.[0]?.name ||
         "N/A",
-      date: new Date(panchang.sunrise).toLocaleDateString("en-IN"),
+      date: new Date(panchang.sunrise).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
     };
 
     // STEP 3: Send data to frontend

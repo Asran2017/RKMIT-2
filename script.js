@@ -257,7 +257,8 @@ async function loadPanchangam() {
     document.getElementById("p-tithi").textContent = data.tithi;
     document.getElementById("p-nakshatra").textContent = data.nakshatra;
   } catch (err) {
-    console.error("Error loading Panchangam:", err);
+    (document.querySelector(".panchangam"),
+      (innerHTML = "<p>Unable to load Panchangam 🙏</p>"));
   }
 }
 
