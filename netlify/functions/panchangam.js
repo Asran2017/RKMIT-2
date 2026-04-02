@@ -35,9 +35,13 @@ export async function handler() {
 
     const result = {
       day: panchang.vaara,
-      tithi: panchang.tithi[0].name,
-      nakshatra: panchang.nakshatra[0].name,
-      date: new Date(panchang.sunrise).toLocleDateString("en-IN"),
+      tithi:
+        panchang.tithi?.[0]?.name?.en || panchang.tithi?.[0]?.name || "N/A",
+      nakshatra:
+        panchang.nakshatra?.[0]?.name?.en ||
+        panchang.nakshatra?.[0]?.name ||
+        "N/A",
+      date: new Date(panchang.sunrise).toLocaleDateString("en-IN"),
     };
 
     // STEP 3: Send data to frontend
@@ -45,11 +49,11 @@ export async function handler() {
       statusCode: 200,
       body: JSON.stringify(result),
     };
-    console.log(data);
   } catch (error) {
+    console.error("ERROR:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to fetch Panchangam" }),
+      body: JSON.stringify({ error: error.message }),
     };
   }
 }
