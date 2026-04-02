@@ -43,7 +43,7 @@ export async function handler() {
     // STEP 3: Send data to frontend
     return {
       statusCode: 200,
-      body: JSON.stringify(data),
+      body: JSON.stringify(result),
     };
     console.log(data);
   } catch (error) {
