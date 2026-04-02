@@ -1,3 +1,5 @@
+const now = new Date().toISOString();
+
 export async function handler() {
   try {
     // STEP 1: Get access token
@@ -18,7 +20,7 @@ export async function handler() {
 
     // STEP 2: Call Panchangam API
     const apiResponse = await fetch(
-      "https://api.prokerala.com/v2/astrology/panchang",
+      `https://api.prokerala.com/v2/astrology/panchang?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}`,
       {
         method: "GET",
         headers: {
