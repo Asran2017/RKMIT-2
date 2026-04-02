@@ -151,7 +151,7 @@ body {
   max-width: 500px;
   background-color: #fff8e1;
   border: 2px solid #d4af37;
-  background: linear-gradient(to bottom, #fff8e1, #fceabb);
+  background-image: url(Images/bg_wheat.png);
   border-radius: 10px;
   box-shadow: 0 0 8px #7c591826;
   text-align: center;
