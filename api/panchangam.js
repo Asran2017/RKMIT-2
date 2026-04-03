@@ -94,22 +94,18 @@ export default async function handler(req, res) {
     const gulikaStart = gulika?.period?.[0]?.start;
     const gulikaEnd = gulika?.period?.[0]?.end;
 
-    function formatTime(time) {
-      if (!time) return "N/A";
+    function formatTime(timeString, lang = "en-IN") {
+      if (!timeString) return "N/A";
 
-      // Extract HH:mm:ss
-      const timePart = time.split("T")[1].split("+")[0]; // "14:55:08"
-      let [hour, minute] = timePart.split(":");
-
-      hour = Number(hour); // 🔥 IMPORTANT
-
-      const ampm = hour >= 12 ? "PM" : "AM";
-
-      hour = hour % 12;
-      if (hour === 0) hour = 12;
-
-      return `${hour}:${minute} ${ampm}`;
+      const date = new Date(timeString);
+      return date.toLocaleTimeString(lang, {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+        timeZone: "Asia/Kolkata", // force IST
+      });
     }
+
     // 🟢 8. FALLBACK TAMIL MAPPING
     const tithiMap = {
       Purnima: "பௌர்ணமி",
@@ -153,6 +149,7 @@ export default async function handler(req, res) {
           day: "numeric",
           month: "long",
           year: "numeric",
+          timeZone: "Asia/Kolkata",
         },
       ),
 
