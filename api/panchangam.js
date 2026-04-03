@@ -72,9 +72,9 @@ export default async function handler(req, res) {
 
     const getName = (p) => p.name?.en || p.name;
 
-    const rahu = inauspicious.find((p) => getName(p) === "Rahu");
-    const yama = inauspicious.find((p) => getName(p) === "Yamaganda");
-    const gulika = inauspicious.find((p) => getName(p) === "Gulika");
+    const rahu = inauspicious.find((p) => getName(p) === "ராகு");
+    const yama = inauspicious.find((p) => getName(p) === "எமகண்டம்");
+    const gulika = inauspicious.find((p) => getName(p) === "குளிகை");
     const rahuStart = rahu?.period?.[0]?.start;
     const rahuEnd = rahu?.period?.[0]?.end;
 
