@@ -7,15 +7,28 @@ export default async function handler(req, res) {
     const now = new Date().toISOString();
 
     // 🟢 3. GET ACCESS TOKEN
+    const params = new URLSearchParams();
+    params.append("grant_type", "client_credentials");
+    params.append("client_id", process.env.CLIENT_ID);
+    params.append("client_secret", process.env.CLIENT_SECRET);
+
     const tokenResponse = await fetch("https://api.prokerala.com/token", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: `grant_type=client_credentials&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`,
+      body: params.toString(),
     });
-
     const tokenData = await tokenResponse.json();
+    if (!tokenData.access_token) {
+      console.error("TOKEN ERROR:", tokenData);
+
+      return res.status(500).json({
+        error: "Failed to generate access token",
+      });
+    }
+    console.log("TOKEN DATA:", JSON.stringify(tokenData, null, 2));
+
     const accessToken = tokenData.access_token;
 
     // 🟢 4. CALL PANCHANG API (WITH LANGUAGE PARAM)
