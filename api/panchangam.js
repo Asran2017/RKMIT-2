@@ -70,11 +70,21 @@ export default async function handler(req, res) {
     console.log("LANG:", lang);
     console.log("FULL DATA:", JSON.stringify(panchang, null, 2));
 
-    const getName = (p) => p.name?.en || p.name;
+    const rahu = inauspicious.find(
+      (p) => p.name.includes("Rahu") || p.name.includes("ராகு"),
+    );
 
-    const rahu = inauspicious.find((p) => getName(p) === "ராகு");
-    const yama = inauspicious.find((p) => getName(p) === "எமகண்டம்");
-    const gulika = inauspicious.find((p) => getName(p) === "குளிகை");
+    const yama = inauspicious.find(
+      (p) => p.name.includes("Yamaganda") || p.name.includes("எமகண்ட"),
+    );
+
+    const gulika = inauspicious.find(
+      (p) => p.name.includes("Gulika") || p.name.includes("குளிகை"),
+    );
+    console.log(
+      "INAUSPICIOUS PERIOD:",
+      inauspicious.find((p) => p.name),
+    );
     const rahuStart = rahu?.period?.[0]?.start;
     const rahuEnd = rahu?.period?.[0]?.end;
 
@@ -85,21 +95,22 @@ export default async function handler(req, res) {
     const gulikaEnd = gulika?.period?.[0]?.end;
 
     function formatTime(time) {
-      if (!time) return "N/A";
+     function formatTime(time) {
+  if (!time) return "N/A";
 
-      // Extract only HH:mm from string
-      const timePart = time.split("T")[1]; // "14:55:08+05:30"
-      const cleanTime = timePart.substring(0, 5); // "14:55"
+  // Extract HH:mm:ss
+  const timePart = time.split("T")[1].split("+")[0]; // "14:55:08"
+  let [hour, minute] = timePart.split(":");
 
-      // Convert to 12-hour format manually
-      let [hour, minute] = cleanTime.split(":");
-      hour = parseInt(hour);
+  hour = Number(hour); // 🔥 IMPORTANT
 
-      const ampm = hour >= 12 ? "PM" : "AM";
-      hour = hour % 12 || 12;
+  const ampm = hour >= 12 ? "PM" : "AM";
 
-      return `${hour}:${minute} ${ampm}`;
-    }
+  hour = hour % 12;
+  if (hour === 0) hour = 12;
+
+  return `${hour}:${minute} ${ampm}`;
+}
     // 🟢 8. FALLBACK TAMIL MAPPING
     const tithiMap = {
       Purnima: "பௌர்ணமி",
