@@ -84,17 +84,22 @@ export default async function handler(req, res) {
     const gulikaStart = gulika?.period?.[0]?.start;
     const gulikaEnd = gulika?.period?.[0]?.end;
 
-    // 🟢 7. TIME FORMAT FUNCTION
     function formatTime(time) {
       if (!time) return "N/A";
-      const date = new Date(time);
-      return date.toLocaleTimeString(lang === "ta" ? "ta-IN" : "en-IN", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-    }
 
+      // Extract only HH:mm from string
+      const timePart = time.split("T")[1]; // "14:55:08+05:30"
+      const cleanTime = timePart.substring(0, 5); // "14:55"
+
+      // Convert to 12-hour format manually
+      let [hour, minute] = cleanTime.split(":");
+      hour = parseInt(hour);
+
+      const ampm = hour >= 12 ? "PM" : "AM";
+      hour = hour % 12 || 12;
+
+      return `${hour}:${minute} ${ampm}`;
+    }
     // 🟢 8. FALLBACK TAMIL MAPPING
     const tithiMap = {
       Purnima: "பௌர்ணமி",
