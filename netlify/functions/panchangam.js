@@ -20,7 +20,7 @@ exports.handler = async (event) => {
 
     // 🟢 4. CALL PANCHANG API (WITH LANGUAGE PARAM)
     const apiResponse = await fetch(
-      `https://api.prokerala.com/v2/astrology/panchang?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}&la=${lang}`,
+      `https://api.prokerala.com/v2/astrology/panchang/advanced?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}&la=${lang}`,
       {
         method: "GET",
         headers: {
