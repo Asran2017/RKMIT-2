@@ -41,9 +41,17 @@ exports.handler = async (event) => {
 
     console.log("INAUSPICIOUS:", JSON.stringify(inauspicious, null, 2));
 
-    const rahu = inauspicious.find((p) => p.name === "Rahukalam");
-    const yama = inauspicious.find((p) => p.name === "Yamagandam");
+    const rahu = inauspicious.find((p) => p.name === "Rahu");
+    const yama = inauspicious.find((p) => p.name === "Yamaganda");
     const gulika = inauspicious.find((p) => p.name === "Gulika");
+    const rahuStart = rahu?.period?.[0]?.start;
+    const rahuEnd = rahu?.period?.[0]?.end;
+
+    const yamaStart = yama?.period?.[0]?.start;
+    const yamaEnd = yama?.period?.[0]?.end;
+
+    const gulikaStart = gulika?.period?.[0]?.start;
+    const gulikaEnd = gulika?.period?.[0]?.end;
 
     // 🟢 7. TIME FORMAT FUNCTION
     function formatTime(time) {
@@ -57,26 +65,26 @@ exports.handler = async (event) => {
       );
     }
 
-    // 🟢 8. FALLBACK TAMIL MAPPING
-    const tithiMap = {
-      Purnima: "பௌர்ணமி",
-      Amavasya: "அமாவாசை",
-    };
+    // // 🟢 8. FALLBACK TAMIL MAPPING
+    // const tithiMap = {
+    //   Purnima: "பௌர்ணமி",
+    //   Amavasya: "அமாவாசை",
+    // };
 
-    const nakshatraMap = {
-      Hasta: "ஹஸ்தம்",
-      Ashwini: "அஸ்வினி",
-    };
+    // const nakshatraMap = {
+    //   Hasta: "ஹஸ்தம்",
+    //   Ashwini: "அஸ்வினி",
+    // };
 
-    const dayMap = {
-      Sunday: "ஞாயிற்றுக்கிழமை",
-      Monday: "திங்கட்கிழமை",
-      Tuesday: "செவ்வாய்க்கிழமை",
-      Wednesday: "புதன்கிழமை",
-      Thursday: "வியாழக்கிழமை",
-      Friday: "வெள்ளிக்கிழமை",
-      Saturday: "சனிக்கிழமை",
-    };
+    // const dayMap = {
+    //   Sunday: "ஞாயிற்றுக்கிழமை",
+    //   Monday: "திங்கட்கிழமை",
+    //   Tuesday: "செவ்வாய்க்கிழமை",
+    //   Wednesday: "புதன்கிழமை",
+    //   Thursday: "வியாழக்கிழமை",
+    //   Friday: "வெள்ளிக்கிழமை",
+    //   Saturday: "சனிக்கிழமை",
+    // };
 
     // 🟢 9. EXTRACT VALUES
     const tithiName = panchang.tithi?.[0]?.name;
@@ -103,17 +111,20 @@ exports.handler = async (event) => {
         },
       ),
 
-      rahukalam: rahu
-        ? `${formatTime(rahu.start)} - ${formatTime(rahu.end)}`
-        : "N/A",
+      rahukalam:
+        rahuStart && rahuEnd
+          ? `${formatTime(rahuStart)} - ${formatTime(rahuEnd)}`
+          : "N/A",
 
-      yamagandam: yama
-        ? `${formatTime(yama.start)} - ${formatTime(yama.end)}`
-        : "N/A",
+      yamagandam:
+        yamaStart && yamaEnd
+          ? `${formatTime(yamaStart)} - ${formatTime(yamaEnd)}`
+          : "N/A",
 
-      kuligai: gulika
-        ? `${formatTime(gulika.start)} - ${formatTime(gulika.end)}`
-        : "N/A",
+      kuligai:
+        gulikaStart && gulikaEnd
+          ? `${formatTime(gulikaStart)} - ${formatTime(gulikaEnd)}`
+          : "N/A",
     };
 
     // 🟢 11. RETURN RESPONSE
