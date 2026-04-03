@@ -28,18 +28,28 @@ export default async function handler(req, res) {
         },
       },
     );
+    console.log("API STATUS:", apiResponse.status);
 
     const data = await apiResponse.json();
-    const panchang = data.data;
 
-    // 🟢 5. LOG FULL RESPONSE (FOR DEBUGGING)
-    console.log("LANG:", lang);
-    console.log("FULL DATA:", JSON.stringify(panchang, null, 2));
+    console.log("RAW API RESPONSE:", JSON.stringify(data, null, 2));
+    if (!data || !data.data) {
+      console.error("API FAILED:", data);
+
+      return res.status(500).json({
+        error: "Invalid API response",
+      });
+    }
+
+    const panchang = data.data;
+    console.log("PANCHANG OK");
 
     // 🟢 6. EXTRACT INAUSPICIOUS PERIOD
     const inauspicious = panchang.inauspicious_period || [];
 
     console.log("INAUSPICIOUS:", JSON.stringify(inauspicious, null, 2));
+    console.log("LANG:", lang);
+    console.log("FULL DATA:", JSON.stringify(panchang, null, 2));
 
     const rahu = inauspicious.find((p) => p.name === "Rahu");
     const yama = inauspicious.find((p) => p.name === "Yamaganda");
