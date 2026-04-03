@@ -20,7 +20,7 @@ export async function handler() {
 
     //  Call Panchangam API
     const apiResponse = await fetch(
-      `https://api.prokerala.com/v2/astrology/panchang/advanced?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}&la="ta"`,
+      `https://api.prokerala.com/v2/astrology/panchang/advanced?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}`,
       {
         method: "GET",
         headers: {
