@@ -95,22 +95,21 @@ export default async function handler(req, res) {
     const gulikaEnd = gulika?.period?.[0]?.end;
 
     function formatTime(time) {
-     function formatTime(time) {
-  if (!time) return "N/A";
+      if (!time) return "N/A";
 
-  // Extract HH:mm:ss
-  const timePart = time.split("T")[1].split("+")[0]; // "14:55:08"
-  let [hour, minute] = timePart.split(":");
+      // Extract HH:mm:ss
+      const timePart = time.split("T")[1].split("+")[0]; // "14:55:08"
+      let [hour, minute] = timePart.split(":");
 
-  hour = Number(hour); // 🔥 IMPORTANT
+      hour = Number(hour); // 🔥 IMPORTANT
 
-  const ampm = hour >= 12 ? "PM" : "AM";
+      const ampm = hour >= 12 ? "PM" : "AM";
 
-  hour = hour % 12;
-  if (hour === 0) hour = 12;
+      hour = hour % 12;
+      if (hour === 0) hour = 12;
 
-  return `${hour}:${minute} ${ampm}`;
-}
+      return `${hour}:${minute} ${ampm}`;
+    }
     // 🟢 8. FALLBACK TAMIL MAPPING
     const tithiMap = {
       Purnima: "பௌர்ணமி",
