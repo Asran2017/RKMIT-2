@@ -70,9 +70,11 @@ export default async function handler(req, res) {
     console.log("LANG:", lang);
     console.log("FULL DATA:", JSON.stringify(panchang, null, 2));
 
-    const rahu = inauspicious.find((p) => p.name === "Rahu");
-    const yama = inauspicious.find((p) => p.name === "Yamaganda");
-    const gulika = inauspicious.find((p) => p.name === "Gulika");
+    const getName = (p) => p.name?.en || p.name;
+
+    const rahu = inauspicious.find((p) => getName(p) === "Rahu");
+    const yama = inauspicious.find((p) => getName(p) === "Yamaganda");
+    const gulika = inauspicious.find((p) => getName(p) === "Gulika");
     const rahuStart = rahu?.period?.[0]?.start;
     const rahuEnd = rahu?.period?.[0]?.end;
 
@@ -85,13 +87,12 @@ export default async function handler(req, res) {
     // 🟢 7. TIME FORMAT FUNCTION
     function formatTime(time) {
       if (!time) return "N/A";
-      return new Date(time).toLocaleTimeString(
-        lang === "ta" ? "ta-IN" : "en-IN",
-        {
-          hour: "2-digit",
-          minute: "2-digit",
-        },
-      );
+      const date = new Date(time);
+      return date.toLocaleTimeString(lang === "ta" ? "ta-IN" : "en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
     }
 
     // 🟢 8. FALLBACK TAMIL MAPPING
