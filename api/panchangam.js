@@ -27,6 +27,11 @@ export default async function handler(req, res) {
         error: "Failed to generate access token",
       });
     }
+    console.log("CLIENT_ID:", process.env.CLIENT_ID);
+    console.log(
+      "CLIENT_SECRET:",
+      process.env.CLIENT_SECRET ? "EXISTS" : "MISSING",
+    );
     console.log("TOKEN DATA:", JSON.stringify(tokenData, null, 2));
 
     const accessToken = tokenData.access_token;
@@ -41,6 +46,7 @@ export default async function handler(req, res) {
         },
       },
     );
+
     console.log("API STATUS:", apiResponse.status);
 
     const data = await apiResponse.json();
