@@ -71,11 +71,11 @@ export default async function handler(req, res) {
     console.log("FULL DATA:", JSON.stringify(panchang, null, 2));
 
     const rahu = inauspicious.find(
-      (p) => p.name.includes("Rahu") || p.name.includes("ராகு"),
+      (p) => p.name.includes("Rahu") || p.name.includes("இராகு"),
     );
 
     const yama = inauspicious.find(
-      (p) => p.name.includes("Yamaganda") || p.name.includes("எமகண்ட"),
+      (p) => p.name.includes("Yamaganda") || p.name.includes("எமகண்டம்"),
     );
 
     const gulika = inauspicious.find(
