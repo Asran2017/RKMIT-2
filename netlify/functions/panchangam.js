@@ -1,26 +1,26 @@
-const now = new Date().toISOString();
-
-export async function handler() {
+exports.handler = async (event) => {
   try {
-    //  Get access token
+    // 🟢 1. READ LANGUAGE (FROM FRONTEND)
+    const lang = event.queryStringParameters?.lang || "en";
+
+    // 🟢 2. CURRENT DATETIME (ISO FORMAT)
+    const now = new Date().toISOString();
+
+    // 🟢 3. GET ACCESS TOKEN
     const tokenResponse = await fetch("https://api.prokerala.com/token", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: new URLSearchParams({
-        grant_type: "client_credentials",
-        client_id: process.env.CLIENT_ID,
-        client_secret: process.env.CLIENT_SECRET,
-      }),
+      body: `grant_type=client_credentials&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}`,
     });
 
     const tokenData = await tokenResponse.json();
     const accessToken = tokenData.access_token;
 
-    //  Call Panchangam API
+    // 🟢 4. CALL PANCHANG API (WITH LANGUAGE PARAM)
     const apiResponse = await fetch(
-      `https://api.prokerala.com/v2/astrology/panchang/advanced?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}`,
+      `https://api.prokerala.com/v2/astrology/panchang?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}&la=${lang}`,
       {
         method: "GET",
         headers: {
@@ -30,31 +30,103 @@ export async function handler() {
     );
 
     const data = await apiResponse.json();
-    console.log(data);
     const panchang = data.data;
-    console.log(JSON.stringify(panchang.tithi, null, 2));
-    console.log(JSON.stringify(panchang.nakshatra, null, 2));
 
-    const result = {
-      day: panchang.vaara,
-      tithi: panchang.tithi?.[0]?.name,
-      nakshatra: panchang.nakshatra?.[0]?.name,
-      date: new Date(panchang.sunrise).toLocaleDateString("en-IN", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
+    // 🟢 5. LOG FULL RESPONSE (FOR DEBUGGING)
+    console.log("LANG:", lang);
+    console.log("FULL DATA:", JSON.stringify(panchang, null, 2));
+
+    // 🟢 6. EXTRACT INAUSPICIOUS PERIOD
+    const inauspicious = panchang.inauspicious_period || [];
+
+    console.log("INAUSPICIOUS:", JSON.stringify(inauspicious, null, 2));
+
+    const rahu = inauspicious.find((p) => p.name === "Rahukalam");
+    const yama = inauspicious.find((p) => p.name === "Yamagandam");
+    const gulika = inauspicious.find((p) => p.name === "Gulika");
+
+    // 🟢 7. TIME FORMAT FUNCTION
+    function formatTime(time) {
+      if (!time) return "N/A";
+      return new Date(time).toLocaleTimeString(
+        lang === "ta" ? "ta-IN" : "en-IN",
+        {
+          hour: "2-digit",
+          minute: "2-digit",
+        },
+      );
+    }
+
+    // 🟢 8. FALLBACK TAMIL MAPPING
+    const tithiMap = {
+      Purnima: "பௌர்ணமி",
+      Amavasya: "அமாவாசை",
     };
-    // STEP 3: Send data to frontend
+
+    const nakshatraMap = {
+      Hasta: "ஹஸ்தம்",
+      Ashwini: "அஸ்வினி",
+    };
+
+    const dayMap = {
+      Sunday: "ஞாயிற்றுக்கிழமை",
+      Monday: "திங்கட்கிழமை",
+      Tuesday: "செவ்வாய்க்கிழமை",
+      Wednesday: "புதன்கிழமை",
+      Thursday: "வியாழக்கிழமை",
+      Friday: "வெள்ளிக்கிழமை",
+      Saturday: "சனிக்கிழமை",
+    };
+
+    // 🟢 9. EXTRACT VALUES
+    const tithiName = panchang.tithi?.[0]?.name;
+    const nakshatraName = panchang.nakshatra?.[0]?.name;
+    const dayName = panchang.vaara;
+
+    // 🟢 10. FINAL RESULT
+    const result = {
+      day: lang === "ta" ? dayMap[dayName] || dayName : dayName,
+
+      tithi: lang === "ta" ? tithiMap[tithiName] || tithiName : tithiName,
+
+      nakshatra:
+        lang === "ta"
+          ? nakshatraMap[nakshatraName] || nakshatraName
+          : nakshatraName,
+
+      date: new Date(panchang.sunrise).toLocaleDateString(
+        lang === "ta" ? "ta-IN" : "en-IN",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        },
+      ),
+
+      rahukalam: rahu
+        ? `${formatTime(rahu.start)} - ${formatTime(rahu.end)}`
+        : "N/A",
+
+      yamagandam: yama
+        ? `${formatTime(yama.start)} - ${formatTime(yama.end)}`
+        : "N/A",
+
+      kuligai: gulika
+        ? `${formatTime(gulika.start)} - ${formatTime(gulika.end)}`
+        : "N/A",
+    };
+
+    // 🟢 11. RETURN RESPONSE
     return {
       statusCode: 200,
       body: JSON.stringify(result),
     };
   } catch (error) {
     console.error("ERROR:", error);
+
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: "Something went wrong" }),
     };
   }
-}
+};

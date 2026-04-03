@@ -249,13 +249,18 @@ window.onload = () => {
 
 async function loadPanchangam() {
   try {
-    const res = await fetch("/.netlify/functions/panchangam");
+    const isTamil = document.documentElement.lang === "ta";
+    const lang = isTamil ? "ta" : "en";
+    const res = await fetch(`/.netlify/functions/panchangam?lang=${lang}`);
     const data = await res.json();
 
     document.getElementById("p-date").textContent = data.date;
     document.getElementById("p-day").textContent = data.day;
     document.getElementById("p-tithi").textContent = data.tithi;
     document.getElementById("p-nakshatra").textContent = data.nakshatra;
+    document.getElementById("rahukalam").textContent = data.rahukalam;
+    document.getElementById("yamagandam").textContent = data.yamagandam;
+    document.getElementById("kuligai").textContent = data.kuligai;
   } catch (err) {
     (document.querySelector(".panchangam"),
       (innerHTML = "<p>Unable to load Panchangam 🙏</p>"));
