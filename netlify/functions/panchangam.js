@@ -65,26 +65,26 @@ exports.handler = async (event) => {
       );
     }
 
-    // // 🟢 8. FALLBACK TAMIL MAPPING
-    // const tithiMap = {
-    //   Purnima: "பௌர்ணமி",
-    //   Amavasya: "அமாவாசை",
-    // };
+    // 🟢 8. FALLBACK TAMIL MAPPING
+    const tithiMap = {
+      Purnima: "பௌர்ணமி",
+      Amavasya: "அமாவாசை",
+    };
 
-    // const nakshatraMap = {
-    //   Hasta: "ஹஸ்தம்",
-    //   Ashwini: "அஸ்வினி",
-    // };
+    const nakshatraMap = {
+      Hasta: "ஹஸ்தம்",
+      Ashwini: "அஸ்வினி",
+    };
 
-    // const dayMap = {
-    //   Sunday: "ஞாயிற்றுக்கிழமை",
-    //   Monday: "திங்கட்கிழமை",
-    //   Tuesday: "செவ்வாய்க்கிழமை",
-    //   Wednesday: "புதன்கிழமை",
-    //   Thursday: "வியாழக்கிழமை",
-    //   Friday: "வெள்ளிக்கிழமை",
-    //   Saturday: "சனிக்கிழமை",
-    // };
+    const dayMap = {
+      Sunday: "ஞாயிற்றுக்கிழமை",
+      Monday: "திங்கட்கிழமை",
+      Tuesday: "செவ்வாய்க்கிழமை",
+      Wednesday: "புதன்கிழமை",
+      Thursday: "வியாழக்கிழமை",
+      Friday: "வெள்ளிக்கிழமை",
+      Saturday: "சனிக்கிழமை",
+    };
 
     // 🟢 9. EXTRACT VALUES
     const tithiName = panchang.tithi?.[0]?.name;
