@@ -1,7 +1,7 @@
-exports.handler = async (event) => {
+export default async function handler(req, res) {
   try {
     // 🟢 1. READ LANGUAGE (FROM FRONTEND)
-    const lang = event.queryStringParameters?.lang || "en";
+    const { lang = "en" } = req.query;
 
     // 🟢 2. CURRENT DATETIME (ISO FORMAT)
     const now = new Date().toISOString();
@@ -128,10 +128,8 @@ exports.handler = async (event) => {
     };
 
     // 🟢 11. RETURN RESPONSE
-    return {
-      statusCode: 200,
-      body: JSON.stringify(result),
-    };
+
+    res.status(200).json(result);
   } catch (error) {
     console.error("ERROR:", error);
 
@@ -140,4 +138,4 @@ exports.handler = async (event) => {
       body: JSON.stringify({ error: "Something went wrong" }),
     };
   }
-};
+}
