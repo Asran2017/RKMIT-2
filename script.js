@@ -246,6 +246,7 @@ window.onload = () => {
     sections[name].classList.add("section-animate");
   });
 };
+// Panchangam Code
 function updateUI(data) {
   document.getElementById("p-date").textContent = data.date;
   document.getElementById("p-day").textContent = data.day;
@@ -263,7 +264,7 @@ async function loadPanchangam() {
 
     const today = new Date().toDateString();
 
-    // 🟢 Check cache
+    // Check cache
     const cached = localStorage.getItem("panchangam");
     const cachedDate = localStorage.getItem("panchangam_date");
     const cachedLang = localStorage.getItem("panchangam_lang");
@@ -274,11 +275,11 @@ async function loadPanchangam() {
       return;
     }
 
-    // 🔵 Fetch only if needed
+    //  Fetch only if needed
     const res = await fetch(`/api/panchangam?lang=${lang}`);
     const data = await res.json();
 
-    // 🟢 Save to cache
+    //  Save to cache
     localStorage.setItem("panchangam", JSON.stringify(data));
     localStorage.setItem("panchangam_date", today);
     localStorage.setItem("panchangam_lang", lang);

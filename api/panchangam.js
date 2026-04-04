@@ -3,10 +3,10 @@ export default async function handler(req, res) {
     // 🟢 1. READ LANGUAGE (FROM FRONTEND)
     const { lang = "en" } = req.query;
 
-    // 🟢 2. CURRENT DATETIME (ISO FORMAT)
+    //  CURRENT DATETIME (ISO FORMAT)
     const now = new Date().toISOString();
 
-    // 🟢 3. GET ACCESS TOKEN
+    //  GET ACCESS TOKEN
     const params = new URLSearchParams();
     params.append("grant_type", "client_credentials");
     params.append("client_id", process.env.CLIENT_ID);
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
     const accessToken = tokenData.access_token;
 
-    // 🟢 4. CALL PANCHANG API (WITH LANGUAGE PARAM)
+    //  CALL PANCHANG API (WITH LANGUAGE PARAM)
     const apiResponse = await fetch(
       `https://api.prokerala.com/v2/astrology/panchang/advanced?ayanamsa=1&coordinates=13.0827,80.2707&datetime=${now}&la=${lang}`,
       {
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
     const panchang = data.data;
     console.log("PANCHANG OK");
 
-    // 🟢 6. EXTRACT INAUSPICIOUS PERIOD
+    // EXTRACT INAUSPICIOUS PERIOD
     const inauspicious = panchang.inauspicious_period || [];
 
     console.log("INAUSPICIOUS:", JSON.stringify(inauspicious, null, 2));
@@ -106,7 +106,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // 🟢 8. FALLBACK TAMIL MAPPING
+    //  FALLBACK TAMIL MAPPING
     const tithiMap = {
       Purnima: "பௌர்ணமி",
       Amavasya: "அமாவாசை",
@@ -127,12 +127,12 @@ export default async function handler(req, res) {
       Saturday: "சனிக்கிழமை",
     };
 
-    // 🟢 9. EXTRACT VALUES
+    // EXTRACT VALUES
     const tithiName = panchang.tithi?.[0]?.name;
     const nakshatraName = panchang.nakshatra?.[0]?.name;
     const dayName = panchang.vaara;
 
-    // 🟢 10. FINAL RESULT
+    //  FINAL RESULT
     const result = {
       day: lang === "ta" ? dayMap[dayName] || dayName : dayName,
 
@@ -169,7 +169,8 @@ export default async function handler(req, res) {
           : "N/A",
     };
 
-    // 🟢 11. RETURN RESPONSE
+    // RETURN RESPONSE
+    res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate");
 
     res.status(200).json(result);
   } catch (error) {

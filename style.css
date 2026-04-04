@@ -98,6 +98,9 @@ body {
   font-weight: 700;
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   color: #3d2518;
+  text-shadow:
+    1.1px 1.1px 0 #55472e,
+    -1px -1px 0 #fff8e7;
 }
 
 .header_img {
@@ -145,6 +148,7 @@ body {
     transform: translateX(-100%);
   }
 }
+/* PANCHANGAM STYLING */
 .panchangam {
   margin: 25px auto;
   padding: 15px;
@@ -168,6 +172,12 @@ body {
 .panchangam p {
   font-size: 1.1rem;
   color: #633014;
+}
+#rahukalam,
+#yamagandam,
+#kuligai {
+  color: #b22222;
+  font-weight: 600;
 }
 /* Navbar Styling */
 .content_bar {
@@ -603,8 +613,9 @@ body {
   .head h1 {
     font-size: 1.85rem;
     text-shadow:
-      1.5px 1.5px 0 #221b0f,
+      1.5px 1.5px 0 #55472e,
       -1px -1px 0 #fff8e7;
+
     white-space: nowrap;
   }
 
